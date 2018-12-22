@@ -1,3 +1,25 @@
 .Box {
-  flex: 9999 1 auto;
+  margin: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  margin: 1rem;
+  background-color: rgba(2, 100, 212, 0.8);
+  padding: 1rem;
 }
+
+.Box section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Box section div {
+  background-color: #be8d76;
+  margin: .5rem;
+  flex: 1 1 50px;
+  height: 60px;
+  border: 2px solid rgb(75, 145, 64);
+}
+
+.Box div:focus {
+  background-color: Aqua;
+}
+
