@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './Box.module.css';
 import {gridDataSetFunc, traverseGrid} from './helper';
 
+
 class Box extends Component {
   state = {
     currentEl: null,
@@ -10,6 +11,10 @@ class Box extends Component {
     gameOver: false,
     mushroomPositions: []
   };
+
+  eventListenerFuntion = (event) => {
+    traverseGrid(event.key, this.gridElementArray, this.state.currentEl, this.props)
+  }
 
   onFocusHandler = (event) => {
     this.setState({
@@ -35,7 +40,7 @@ class Box extends Component {
       this.setState({
         gameOver: true
       });
-      document.removeEventListener('keyup', traverseGrid);
+      document.removeEventListener('keyup', this.eventListenerFuntion);
     }
   };
 
@@ -47,7 +52,7 @@ class Box extends Component {
     for(let i = 1; i <= rows; i++) {
       const arrInner = [];
       for(let j = 1; j <= cols; j++) {
-        arrInner.push(<div onFocus={this.onFocusHandler} tabIndex='0' key={`${i}${j}`} data-position={`${i}-${j}`} data-value={mushroomData[count]}>{mushroomData[count]}</div>);
+        arrInner.push(<div onFocus={this.onFocusHandler} tabIndex='0' key={`${i}${j}`} data-position={`${i}-${j}`} data-value={mushroomData[count]}></div>);
         count++;
       }
       array.push(arrInner);
@@ -55,33 +60,43 @@ class Box extends Component {
     return array;
   };
 
-  gridArray = this.gridArrayMaker();
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps !== this.props || nextState.gameOver !== this.state.gameOver) {
+      return true;
+    }
+    return false;
+  }
+  
 
   render() {
-    const scorecard = <div className={styles.Scorecard}>You took {this.state.moves} moves to fill your tummy!</div>;
+    console.log('Rendering');
+    const gridArray = this.gridArrayMaker();
+    const scorecard = (
+      <div className={styles.Scorecard}>You took {this.state.moves} moves to fill your tummy!
+         <button style={{display: 'block', fontSize: '1.5rem', margin: '10px auto'}} 
+         onClick={() => window.location.reload()}>RESTART</button>
+      </div>
+    );
     return (
       <div>
         {this.state.gameOver ? scorecard : null};
         <div className={styles.Box} id="grid">
-          {this.gridArray.map((el, i) => <section key={i}>{el}</section>)}
+          {gridArray.map((el, i) => <section key={i}>{el}</section>)}
         </div>
       </div>
     );
   }
 
   componentDidMount() {
-    let gridElementArray = document.getElementById('grid').getElementsByTagName('div');
+    this.gridElementArray = document.getElementById('grid').getElementsByTagName('div');
 
-    document.addEventListener('keyup', ({key}) => {
-      console.log('run run');
+    window.addEventListener('keyup', ({key}) => {
       if(key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
-        gridElementArray[0].focus();
-      } else {
-        alert('Use arrow keys to move Mario');
+        this.gridElementArray[0].focus();
       }
     }, {capture: true, once: true});
 
-    document.addEventListener('keyup', (event) => traverseGrid(event.key, gridElementArray, this.state.currentEl, this.props))
+    document.getElementById("grid").addEventListener('keyup', this.eventListenerFuntion)
   }
 }
 

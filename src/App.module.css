@@ -2,9 +2,10 @@
   background-color: rgba(229, 66, 27, 0.9);
   color: white;
   height: 50px;
-  width: 100vw;
+  width: 100%;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  margin: 0;
   margin-bottom: 1rem;
 }
 

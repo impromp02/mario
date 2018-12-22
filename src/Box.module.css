@@ -1,7 +1,6 @@
 .Box {
   margin: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-  margin: 1rem;
   background-color: rgba(2, 100, 212, 0.8);
   padding: 1rem;
 }

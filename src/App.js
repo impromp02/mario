@@ -21,7 +21,7 @@ class App extends Component {
             <h1>Mario: The Mushroom Eater</h1>
           </header>
           <div>
-            <form className={styles.Form} onSubmit={this.handleSubmit}>
+            <form className={styles.Form}>
               <div>
                 <label htmlFor="rows">Rows</label>
                 <input type="text" name="rows" value={this.state.rows} onChange={this.inputChangeHandler}/>

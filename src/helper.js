@@ -28,7 +28,7 @@ export const traverseGrid = (key, gridArray, grid, props) => {
       break;
     case 'ArrowRight': moveRight(pos, gridArray, cols)
       break;
-    default: alert('Use arrow keys to feed Mario');
+    default:;
   }
 };
 
