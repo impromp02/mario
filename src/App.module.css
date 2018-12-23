@@ -1,7 +1,7 @@
 .Header {
   background-color: rgba(229, 66, 27, 0.9);
   color: white;
-  height: 50px;
+  height: calc(1rem + 2.5vw + 1vh);
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   margin: 0;
@@ -12,6 +12,7 @@
   font-size: calc(1rem + 2.5vw);
   margin: 0;
   text-align: center;
+  vertical-align: center;
 }
 
 .Form {
