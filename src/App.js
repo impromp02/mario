@@ -9,8 +9,12 @@ class App extends Component {
   };
 
   inputChangeHandler = (event) => {
+    if(isNaN(event.target.value)) {
+      alert('Rows and Columns can only be a number!');
+      return;
+    }
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: parseInt(event.target.value)
     });
   };
 

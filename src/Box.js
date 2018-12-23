@@ -52,7 +52,7 @@ class Box extends Component {
     for(let i = 1; i <= rows; i++) {
       const arrInner = [];
       for(let j = 1; j <= cols; j++) {
-        arrInner.push(<div onFocus={this.onFocusHandler} tabIndex='0' key={`${i}${j}`} data-position={`${i}-${j}`} data-value={mushroomData[count]}></div>);
+        arrInner.push(<div onFocus={this.onFocusHandler} tabIndex='0' key={`${i}${j}`} data-position={`${i}-${j}`} data-value={mushroomData[count]}>{mushroomData[count]}</div>);
         count++;
       }
       array.push(arrInner);
